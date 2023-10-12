@@ -1,4 +1,6 @@
-var mysql      = require('mysql');
+require('dotenv').config();
+var mysql = require('mysql');
+
 var connection = mysql.createConnection({
   host     : process.env.MYSQL_HOST ,
   user     : process.env.MYSQL_USER ,
@@ -6,11 +8,17 @@ var connection = mysql.createConnection({
   database : process.env.MYSQL_DB,
 });
  
-connection.connect(function(err) {
+module.exports =connection.connect(function(err) {
   if (err) {
     console.error('error connecting: ' + err.stack);
     return;
   }
  
-  console.log('connected as id ' + connection.threadId);
+  var con= connection.query("SELECT * FROM user", function(err,result,fields){
+    if (err) throw err;
+    console.log(result);
+    return result;
+  })
+  return con;
 });
+
