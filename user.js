@@ -1,25 +1,25 @@
 var connection = require('./mysql')
-var mysql = require('mysql');
+
+//SELECT REQUEST
+function getUsers(callback){
+
+    connection.query('SELECT * FROM  user',  function(err,user){
+        if (err){
+            console.error('Error executing MySQL query: ' + err)
+            callback(err,null);
+        } else {
+            if (!user || user.length === 0) {
+                console.log('No results found.');
+                callback(null,[]);
+              }else {
+                callback(null,user)
+              }
+        }
+        connection.end();
+    });
+}
+
+module.exports = getUsers;
+ 
 
 
-let MyUser = connection.then(
-
-    function(result, rej){
-    var user = {
-        id : result.idUser,
-        name : result.nameUser,
-        surname : result.surnameUser,
-        email : result.emailUser,
-    }
-    if(user != null && user != ''){
-        result(user);
-    }
-    else{
-        rej(console.error('Something whent wrong'));
-    }
-    
-
-}).then(
-   function(value) {module.exports = value},
-   function(error) {console.log(error)}
-);

@@ -1,6 +1,5 @@
 var express = require('express');
-var user = require('./user');
-var mysql = require('mysql');
+var getUsers = require('./user');
 
 var app = express();
 
@@ -9,7 +8,13 @@ app.get('/',function(req,res){
 });
 
 app.get('/user',function(req,res){
-    res.send(result.name);
+    getUsers(function(err, user){
+        if(err) {
+            res.status(500).json({error:'Error fetching users'})
+        }else{
+            res.json(user[0]);
+        }
+    })
 });
 
 app.listen(3000)

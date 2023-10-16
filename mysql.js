@@ -7,18 +7,21 @@ var connection = mysql.createConnection({
   password : process.env.MYSQL_PASS ,
   database : process.env.MYSQL_DB,
 });
+
  
-module.exports =connection.connect(function(err) {
+connection.connect(function(err) {
   if (err) {
     console.error('error connecting: ' + err.stack);
     return;
   }
  
-  var con= connection.query("SELECT * FROM user", function(err,result,fields){
+ /* var con= connection.query("SELECT * FROM user", function(err,result,fields){
     if (err) throw err;
     console.log(result);
     return result;
   })
-  return con;
+  return con;*/
 });
+
+module.exports = connection;
 
