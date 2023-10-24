@@ -1,27 +1,13 @@
 require('dotenv').config();
-var mysql = require('mysql');
+var mysql = require('mysql2');
 
-var connection = mysql.createConnection({
+const connection = mysql.createPool({
   host     : process.env.MYSQL_HOST ,
   user     : process.env.MYSQL_USER ,
   password : process.env.MYSQL_PASS ,
   database : process.env.MYSQL_DB,
 });
 
- 
-connection.connect(function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
- 
- /* var con= connection.query("SELECT * FROM user", function(err,result,fields){
-    if (err) throw err;
-    console.log(result);
-    return result;
-  })
-  return con;*/
-});
 
-module.exports = connection;
+module.exports = connection.promise();
 
