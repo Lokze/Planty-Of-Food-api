@@ -30,10 +30,40 @@ async function createUser(name,surname,email){
 }
 
 
+//MODIFY REQUEST
+async function modifyUser(name,surname,email,id){
+    const [result] = await connection.query(`
+    UPDATE user
+    SET nameUser=?, surnameUser=?, emailUser=?
+    WHERE idUser=?
+    `,[name,surname,email,id])
+    return getUser(id);
+}
+
+//DELETE REQUEST
+async function deleteUser(id){
+    await connection.query(`
+    DELETE FROM user
+    WHERE idUser=?
+    `,[id])
+
+    const result = await getUser(id)
+    
+    if(result.length==0){
+    return console.log('The user by the id: '+ id+ ' has been succssefully removed')
+    }
+    else{
+        return console.log('Something went wrong in the deletion of the user by the id :'+ id)
+    }
+    
+}
+
 module.exports={
     getUser: getUser,
     getUsers: getUsers,
     createUser : createUser,
+    modifyUser : modifyUser,
+    deleteUser : deleteUser,
 };
 
 
