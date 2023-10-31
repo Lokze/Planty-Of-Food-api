@@ -32,7 +32,7 @@ async function createUser(name,surname,email){
 
 //MODIFY REQUEST
 async function modifyUser(name,surname,email,id){
-    const [result] = await connection.query(`
+    await connection.query(`
     UPDATE user
     SET nameUser=?, surnameUser=?, emailUser=?
     WHERE idUser=?

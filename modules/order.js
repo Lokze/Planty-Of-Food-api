@@ -26,25 +26,24 @@ async function createOrder(date,idUser){
 //MODIFY REQUEST
 async function modifyOrder(date,idUser,id){
     await connection.query(
-        'UPDATE `order` SET dateAdded=?, User_idUser=? WHERE idProduct=?'
+        'UPDATE `order` SET dateAdded=?, User_idUser=? WHERE idOrder=?'
     ,[date,idUser,id])
     return getOrder(id);
 }
 
 //DELETE REQUEST
-async function deleteProduct(id){
-    await connection.query(`
-    DELETE FROM product
-    WHERE idProduct=?
-    `,[id])
+async function deleteOrder(id){
+    await connection.query(
+    'DELETE FROM `order` WHERE idOrder=?'
+    ,[id])
 
-    const result = await getProduct(id)
+    const result = await getOrder(id)
     
     if(result.length==0){
-    return console.log('The product by the id: '+ id+ ' has been succssefully removed')
+    return console.log('The order by the id: '+ id+ ' has been succssefully removed')
     }
     else{
-        return console.log('Something went wrong in the deletion of the product by the id :'+ id)
+        return console.log('Something went wrong in the deletion of the order by the id :'+ id)
     }
     
 }
@@ -55,4 +54,5 @@ module.exports = {
     getOrder : getOrder,
     createOrder : createOrder,
     modifyOrder : modifyOrder,
+    deleteOrder : deleteOrder,
 }
