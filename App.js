@@ -31,8 +31,12 @@ app.get("/user", async function (req,res) {
 app.get("/user/:id", async function (req,res){
     const id = req.params.id
     const user = await userMod.getUser(id)
-      
-    res.send(user);
+      if (user.length==0){
+        res.status(404).send('The user could not be found')
+      }
+      else{
+        res.send(user)
+      };
 });
 
 app.post("/user",async function (req,res){
@@ -66,7 +70,14 @@ app.get("/product", async function (req,res) {
 app.get("/product/:id", async function (req,res){
     const id = req.params.id
     const product = await productMod.getProduct(id)
-    res.send(product);
+    
+    if (product.length==0){
+        res.status(404).send('The product could not be found')
+      }
+      else{
+        res.send(product)
+      };
+    
 })
 
 app.post("/product",async function (req,res){
@@ -100,7 +111,12 @@ app.get("/order", async function (req,res) {
 app.get("/order/:id", async function (req,res){
     const id = req.params.id
     const order = await orderMod.getOrder(id)
-    res.send(order);
+    if (order.length==0){
+        res.status(404).send('The order could not be found')
+      }
+      else{
+        res.send(order)
+      };
 })
 
 app.post("/order",async function (req,res){
@@ -132,7 +148,13 @@ app.get("/ohp", async function (req,res) {
 app.get("/ohp/:id", async function (req,res){
     const id = req.params.id
     const ohp = await ohpMod.getOHP(id)
-    res.send(ohp);
+    if (ohp.length==0){
+        res.status(404).send('The ohp could not be found')
+      }
+      else{
+        res.send(ohp)
+      };
+    
 })
 
 app.post("/ohp",async function (req,res){
@@ -159,7 +181,13 @@ app.delete("/ohp-delete/:id", async function(req,res){
 app.get("/date-sort/:date", async function(req,res){
     const date = req.params.date
     const sort = await querys.getQueryDate(date)
-    res.send(sort)
+    if (sort.length==0){
+        res.status(404).send('The orders and products could not be found')
+      }
+      else{
+        res.send(sort)
+      };
+   
 })
 
 
@@ -167,7 +195,12 @@ app.get("/date-sort/:date", async function(req,res){
 app.get("/product-sort/:product", async function(req,res){
     const product = req.params.product
     const sort = await querys.getQueryProduct(product)
-    res.send(sort)
+    if (sort.length==0){
+        res.status(404).send('The orders and products could not be found')
+      }
+      else{
+        res.send(sort)
+      };
 })
 
 
@@ -175,7 +208,12 @@ app.get("/product-sort/:product", async function(req,res){
 app.get("/product-date", async function(req,res){
     const {product,date} = req.body
     const sort = await querys.getQueryBoth(product,date)
-    res.send(sort)
+    if (sort.length==0){
+        res.status(404).send('The orders and products could not be found')
+      }
+      else{
+        res.send(sort)
+      };
 })
 
 
