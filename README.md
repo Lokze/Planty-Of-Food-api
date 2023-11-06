@@ -2,7 +2,7 @@ Planty Of Food api
 
 Hi this is an API that will enable purchasing groups to be managed in the company's Planty Of Food platform, using Node.js and MySQL.
 
-**REMEMBER TO USE THIS API YOU NEED TO USE A PROGRAM TO MANAGE THE REQUEST LIKE [POSTMAN](https://www.postman.com) OR THE [THUNDER CLINT](https://www.thunderclient.com) ON VSC** <br />
+**REMEMBER TO USE THIS API YOU NEED TO USE A PROGRAM TO MANAGE THE REQUEST LIKE [POSTMAN](https://www.postman.com) OR THE [THUNDER CLIENT](https://www.thunderclient.com) ON VSC** <br />
 This is how the databased is structured. <br />
 There are 4 tables:<br />
 User;<br />
@@ -106,4 +106,4 @@ The GET request is different because it uses the json in the body insted of geti
 ![image](https://github.com/Lokze/Planty-Of-Food-api/assets/51636003/3ee92b76-f3cb-4cc7-8e4c-cdd4600d4d4a)
 
 
-**REMEMBER TO USE THIS API YOU NEED TO USE A PROGRAM TO MANAGE THE REQUEST LIKE [POSTMAN](https://www.postman.com) OR THE [THUNDER CLINT](https://www.thunderclient.com) ON VSC**
+**REMEMBER TO USE THIS API YOU NEED TO USE A PROGRAM TO MANAGE THE REQUEST LIKE [POSTMAN](https://www.postman.com) OR THE [THUNDER CLIENT](https://www.thunderclient.com) ON VSC**
