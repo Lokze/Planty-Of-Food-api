@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`user` (
   `emailUser` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idUser`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 117
+AUTO_INCREMENT = 100
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`order` (
     FOREIGN KEY (`User_idUser`)
     REFERENCES `mydb`.`user` (`idUser`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 16
+AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`product` (
   `productName` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idProduct`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`order_has_product` (
     FOREIGN KEY (`Product_idProduct`)
     REFERENCES `mydb`.`product` (`idProduct`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
