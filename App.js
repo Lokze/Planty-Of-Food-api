@@ -11,7 +11,7 @@ app.use(express.json())
 
 app.use((err,req,res,next)=>{
     console.error(err.stack)
-    res.status(500).send('Somethin broke!')
+    res.status(500).json({ error: 'Internal Server Error', message: err.message });
 })
 
 app.get('/',function(req,res){
@@ -22,39 +22,45 @@ app.get('/',function(req,res){
 
 
 //USER
-app.get("/user", async function (req,res) {
+app.get("/users", async function (req,res) {
     const users = await userMod.getUsers()
-    res.send (users)
+    res.status(200).send (users)
 })
 
 
-app.get("/user/:id", async function (req,res){
+app.get("/users/:id", async function (req,res){
     const id = req.params.id
     const user = await userMod.getUser(id)
       if (user.length==0){
-        res.status(404).send('The user could not be found')
+        res.status(404).json({
+            error: {
+                code: 500,
+                message: 'Internal Server Error',
+                timestamp: Date.now()
+            }
+        })
       }
       else{
-        res.send(user)
+        res.status(200).send(user)
       };
 });
 
-app.post("/user",async function (req,res){
+app.post("/users",async function (req,res){
     const {name, surname, email} = req.body
     const  user = await userMod.createUser(name, surname, email)
     res.status(201).send(user);
 })
 
-app.put("/user-update", async function(req,res){
+app.put("/users-update", async function(req,res){
     const {name,surname,email,id} = req.body
     const user = await userMod.modifyUser(name,surname,email,id)
     res.status(201).send(user)
 })
 
-app.delete("/user-delete/:id", async function(req,res){
+app.delete("/users-delete/:id", async function(req,res){
     const id = req.params.id
     const user = await userMod.deleteUser(id)
-    res.status(201).send(user)
+    res.status(204).send(user)
 })
 
 
@@ -62,40 +68,46 @@ app.delete("/user-delete/:id", async function(req,res){
 
 
 //PRODUCT
-app.get("/product", async function (req,res) {
+app.get("/products", async function (req,res) {
     const products = await productMod.getProducts()
-    res.send (products)
+    res.status(200).send (products)
 })
 
-app.get("/product/:id", async function (req,res){
+app.get("/products/:id", async function (req,res){
     const id = req.params.id
     const product = await productMod.getProduct(id)
     
     if (product.length==0){
-        res.status(404).send('The product could not be found')
+        res.status(404).json({
+            error: {
+                code: 500,
+                message: 'Internal Server Error',
+                timestamp: Date.now()
+            }
+        })
       }
       else{
-        res.send(product)
+        res.status(200).send (product)
       };
     
 })
 
-app.post("/product",async function (req,res){
+app.post("/products",async function (req,res){
     const {name} = req.body
     const  product = await productMod.createProduct(name)
     res.status(201).send(product);
 })
 
-app.put("/product-update", async function(req,res){
+app.put("/products-update", async function(req,res){
     const {name,id} = req.body
     const product = await productMod.modifyProduct(name,id)
     res.status(201).send(product)
 })
 
-app.delete("/product-delete/:id", async function(req,res){
+app.delete("/products-delete/:id", async function(req,res){
     const id = req.params.id
     const product = await productMod.deleteProduct(id)
-    res.status(201).send(product)
+    res.status(204).send(product)
 })
 
 
@@ -103,38 +115,44 @@ app.delete("/product-delete/:id", async function(req,res){
 
 
 //ORDER
-app.get("/order", async function (req,res) {
+app.get("/orders", async function (req,res) {
     const orders = await orderMod.getOrders()
-    res.send (orders)
+    res.status(200).send (orders)
 })
 
-app.get("/order/:id", async function (req,res){
+app.get("/orders/:id", async function (req,res){
     const id = req.params.id
     const order = await orderMod.getOrder(id)
     if (order.length==0){
-        res.status(404).send('The order could not be found')
+        res.status(404).json({
+            error: {
+                code: 500,
+                message: 'Internal Server Error',
+                timestamp: Date.now()
+            }
+        })
       }
       else{
-        res.send(order)
+        res.status(200).send(order)
       };
 })
 
-app.post("/order",async function (req,res){
+app.post("/orders",async function (req,res){
     const {date,idUser} = req.body
     const  order = await orderMod.createOrder(date,idUser)
     res.status(201).send(order);
 })
 
-app.put("/order-update", async function(req,res){
+app.put("/orders-update", async function(req,res){
     const {date,idUser,id} = req.body
     const order = await orderMod.modifyOrder(date,idUser,id)
     res.status(201).send(order)
 })
 
-app.delete("/order-delete/:id", async function(req,res){
+app.delete("/orders-+-delete/:id", async function(req,res){
     const id = req.params.id
     const order = await orderMod.deleteOrder(id)
-    res.status(201).send(order)
+    res.status(204).send(order)
 })
 
 
@@ -142,17 +160,23 @@ app.delete("/order-delete/:id", async function(req,res){
 //OHP
 app.get("/ohp", async function (req,res) {
     const ohps = await ohpMod.getOHPs()
-    res.send (ohps)
+    res.status(200).send (ohps)
 })
 
 app.get("/ohp/:id", async function (req,res){
     const id = req.params.id
     const ohp = await ohpMod.getOHP(id)
     if (ohp.length==0){
-        res.status(404).send('The ohp could not be found')
+        res.status(404).json({
+            error: {
+                code: 500,
+                message: 'Internal Server Error',
+                timestamp: Date.now()
+            }
+        })
       }
       else{
-        res.send(ohp)
+        res.status(200).send(ohp)
       };
     
 })
@@ -172,7 +196,7 @@ app.put("/ohp-update", async function(req,res){
 app.delete("/ohp-delete/:id", async function(req,res){
     const id = req.params.id
     const ohp = await ohpMod.deleteOHP(id)
-    res.status(201).send(ohp)
+    res.status(204).send(ohp)
 })
 
 
@@ -182,10 +206,16 @@ app.get("/date-sort/:date", async function(req,res){
     const date = req.params.date
     const sort = await querys.getQueryDate(date)
     if (sort.length==0){
-        res.status(404).send('The orders and products could not be found')
+        res.status(404).json({
+            error: {
+                code: 500,
+                message: 'Internal Server Error',
+                timestamp: Date.now()
+            }
+        })
       }
       else{
-        res.send(sort)
+        res.status(200).send(sort)
       };
    
 })
@@ -196,23 +226,37 @@ app.get("/product-sort/:product", async function(req,res){
     const product = req.params.product
     const sort = await querys.getQueryProduct(product)
     if (sort.length==0){
-        res.status(404).send('The orders and products could not be found')
+        res.status(404).json({
+            error: {
+                code: 500,
+                message: 'Internal Server Error',
+                timestamp: Date.now()
+            }
+        })
       }
       else{
-        res.send(sort)
+        res.status(200).send(sort)
       };
 })
 
 
 //ORDER AND PRODUCT SORT BY PRODUCT NAME and DATE
 app.get("/product-date", async function(req,res){
-    const {product,date} = req.body
+    //const {product,date} = req.body//
+    const date = req.query.date;
+    const product= req.query.product;
     const sort = await querys.getQueryBoth(product,date)
     if (sort.length==0){
-        res.status(404).send('The orders and products could not be found')
+        res.status(404).json({
+            error: {
+                code: 500,
+                message: 'Internal Server Error',
+                timestamp: Date.now()
+            }
+        })
       }
       else{
-        res.send(sort)
+        res.status(200).send(sort)
       };
 })
 
