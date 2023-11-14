@@ -100,9 +100,10 @@ The GET reqeust is  http://localhost:3000/product-sort/{product-name}. <br />
 And the last one sort order and product using both date and product name. <br />
 querys.js| App.js
 :-------------------------:|:-------------------------:|
-![image](https://github.com/Lokze/Planty-Of-Food-api/assets/51636003/1df2553a-ad2c-45ab-821b-4b408e061418)|![image](https://github.com/Lokze/Planty-Of-Food-api/assets/51636003/961d2283-a5c8-4476-a8fe-bf733675c112)
+![image](https://github.com/Lokze/Planty-Of-Food-api/assets/51636003/1df2553a-ad2c-45ab-821b-4b408e061418)|![image](https://github.com/Lokze/Planty-Of-Food-api/assets/51636003/4f763001-e3d1-4f3f-ac33-75f1bc2923b6)
 
-The GET request is different because it uses the json in the body insted of geting the date and product name from the params http://localhost:3000/product-date
+
+The GET request is :http://localhost:3000/product-date?date=YYYY-MM-DD&product=ProductName
 ![image](https://github.com/Lokze/Planty-Of-Food-api/assets/51636003/3ee92b76-f3cb-4cc7-8e4c-cdd4600d4d4a)
 
 
