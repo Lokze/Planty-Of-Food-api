@@ -52,10 +52,10 @@ The data to add is recived through the json conetent in the body fro example:<br
 ![image](https://github.com/Lokze/Planty-Of-Food-api/assets/51636003/50665c4c-c556-46b0-99db-b078ea453119)
 
 Here the POST reqest for every module:
--User : http://localhost:3000/user <br />
--Product : http://localhost:3000/product <br />
--Order : http://localhost:3000/order <br />
--Order_has_product : http://localhost:3000/ohp <br />
+-User : http://localhost:3000/user   Json body{"name":"Inser Name", "surname":"Insert Surname", "email":"Inser Email"} <br />
+-Product : http://localhost:3000/product   Json body{"product":"Inser product"} <br />
+-Order : http://localhost:3000/order   Json body{"date":"Inser Date(YYYY-MM-DD)", "idUser":"Inser user id}<br />
+-Order_has_product : http://localhost:3000/ohp   Json body{"idOrder":"Insert idOrder", "idProduct":"Inser idProduct"} <br />
 
 This is the function to modify the data in the table<br />
 
@@ -65,10 +65,10 @@ user.js| App.js
 
 Just as the POST request this PUT reqest will update the data recive from json content in the body<br />
 Here the PUT request for evry module:<br />
--User : http://localhost:3000/user-update <br />
--Product : http://localhost:3000/product-update <br />
--Order : http://localhost:3000/order-update <br />
--Order_has_product : http://localhost:3000/ohp-update <br />
+-User : http://localhost:3000/user   Json body{"name":"Inser Name", "surname":"Insert Surname", "email":"Inser Email", "id":"id"} <br />
+-Product : http://localhost:3000/product   Json body{"product":"Inser product", "id":"id"} <br />
+-Order : http://localhost:3000/order   Json body{"date":"Inser Date(YYYY-MM-DD)", "idUser":"Inser user id", "id":"id"}<br />
+-Order_has_product : http://localhost:3000/ohp   Json body{"idOrder":"Insert idOrder", "idProduct":"Inser idProduct", "id":"id"} <br />
 
 And this is the function to delete data from the table.<br />
 user.js| App.js
@@ -77,10 +77,10 @@ user.js| App.js
 
 It deletes th data based on the id on the HTTP request<br />
 here the DELETE request for every module:<br />
--User : http://localhost:3000/user-delete/{id} <br />
--Product : http://localhost:3000/product-delete/{id} <br />
--Order : http://localhost:3000/order-delete/{id} <br />
--Order_has_product : http://localhost:3000/ohp-delete/{id} <br />
+-User : http://localhost:3000/user/{id} <br />
+-Product : http://localhost:3000/product/{id} <br />
+-Order : http://localhost:3000/order/{id} <br />
+-Order_has_product : http://localhost:3000/ohp/{id} <br />
 
 And this is it for the first 4 module, now this is the last module where you can make 3 querys. <br />
 The first one sorts order and product by the order date <br />
