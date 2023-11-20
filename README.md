@@ -51,7 +51,7 @@ user.js| App.js
 The data to add is recived through the json conetent in the body fro example:<br />
 ![image](https://github.com/Lokze/Planty-Of-Food-api/assets/51636003/50665c4c-c556-46b0-99db-b078ea453119)
 
-Here the POST reqest for every module:
+Here the POST reqest for every module:<br />
 -User : http://localhost:3000/user   Json body{"name":"Inser Name", "surname":"Insert Surname", "email":"Inser Email"} <br />
 -Product : http://localhost:3000/product   Json body{"product":"Inser product"} <br />
 -Order : http://localhost:3000/order   Json body{"date":"Inser Date(YYYY-MM-DD)", "idUser":"Inser user id}<br />
