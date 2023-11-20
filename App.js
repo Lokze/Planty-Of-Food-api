@@ -177,6 +177,11 @@ function isValidMySQLDate(date) {
     return regex.test(date);
   }
 
+  function isValidId(id){
+    const idRegex =/^[0-9]+$/
+    return idRegex.test(id);
+  }
+
 app.post("/orders",async function (req,res){
     const {date,idUser} = req.body
 
@@ -199,6 +204,9 @@ app.put("/orders", async function (req, res) {
     if (!isValidMySQLDate(date)) {
         return res.status(400).json({ error: 'Invalid date format' });
       }
+    if(!isValidId(idUser)){
+        return res.status(400).json({ error: 'Invalid UserID format, numbers only' });
+    }
     if (await checkRecordExists(orderMod.getOrder, id, res)) {
         const order = await orderMod.modifyOrder(date, idUser, id);
         res.status(201).send(order);
@@ -231,8 +239,12 @@ app.get("/ohp/:id", async function (req, res) {
 
 app.post("/ohp",async function (req,res){
     const {idOrder,idProduct} = req.body
+    
     if(!idOrder || !idProduct){
         return res.status(400).json({ error: 'No data insert' });
+    }
+    if(!isValidId(idOrder)||!isValidId(idProduct)){
+        return res.status(400).json({ error: 'Invalid UserID format, numbers only' });
     }
     const  ohp = await ohpMod.createOHP(idOrder,idProduct)
     res.status(201).send(ohp);
@@ -242,6 +254,9 @@ app.put("/ohp", async function (req, res) {
     const { idOrder, idProduct, id } = req.body;
     if(!idOrder || !idProduct || !id){
         return res.status(400).json({ error: 'No data insert' });
+    }
+    if(!isValidId(idOrder)||!isValidId(idProduct)){
+        return res.status(400).json({ error: 'Invalid UserID format, numbers only' });
     }
     if (await checkRecordExists(ohpMod.getOHP, id, res)) {
         const ohp = await ohpMod.modifyOHP(idOrder, idProduct, id);
